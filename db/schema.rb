@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2022_05_28_191341) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "last_name"
-    t.integer "doc_id"
+    t.string "doc_id"
     t.integer "genre", limit: 2
     t.integer "status", limit: 2
     t.datetime "created_at", null: false
