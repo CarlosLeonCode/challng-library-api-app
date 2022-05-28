@@ -18,7 +18,7 @@ class Api::V1::BooksController < ApplicationController
     @book = Book.new(book_params)
 
     if @book.save
-      render json: @book, status: :created, location: @book
+      render json: @book, status: :created
     else
       render json: @book.errors, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class Api::V1::BooksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
-      @book = Book.find(params[:id])
+      @book = Book.find_by_code(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
