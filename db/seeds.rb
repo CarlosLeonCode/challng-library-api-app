@@ -34,3 +34,18 @@ if User.all.empty?
 else 
     puts '▶ Already exist users😁'
 end
+
+if Loan.all.empty?
+    user = User.first
+    book = Book.first
+    
+    Loan.create!(
+        user_id: user.id,
+        book_id: book.id,
+        status: :pending_deliver
+    )
+    book.update!(status: :borrowed)
+    puts '▶ Loan created! 😎'
+else
+    puts '▶ Already exist loan 😁'
+end

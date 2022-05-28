@@ -1,4 +1,4 @@
-class LoansController < ApplicationController
+class Api::V1::LoansController < ApplicationController
   before_action :set_loan, only: [:show, :update, :destroy]
 
   # GET /loans

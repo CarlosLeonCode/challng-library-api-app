@@ -1,3 +1,5 @@
 class LoanSerializer < ActiveModel::Serializer
-  attributes :id
+  belongs_to :book
+  belongs_to :user
+  attributes :id, :status
 end
