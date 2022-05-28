@@ -8,6 +8,8 @@ class Book < ApplicationRecord
 
     before_validation :set_defaults, on: :create
 
+    scope :all_available, -> { where(status: :available) }
+
     private
 
     def set_defaults

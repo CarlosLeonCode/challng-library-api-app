@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    @users = User.all_active
 
     render json: @users
   end
@@ -35,7 +35,8 @@ class Api::V1::UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    @user.destroy
+    @user.update!(status: :inactive)
+    render json: @user, status: :ok
   end
 
   private

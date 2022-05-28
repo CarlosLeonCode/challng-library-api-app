@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
     before_validation :set_defaults, on: :create
 
+    scope :all_active, -> { where(status: :active) }
+
     private
 
     def set_defaults

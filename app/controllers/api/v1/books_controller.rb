@@ -3,7 +3,7 @@ class Api::V1::BooksController < ApplicationController
 
   # GET /books
   def index
-    @books = Book.all
+    @books = Book.all_available
 
     render json: @books
   end
@@ -35,7 +35,8 @@ class Api::V1::BooksController < ApplicationController
 
   # DELETE /books/1
   def destroy
-    @book.destroy
+    @book.update!(status: :unavailable)
+    render json: @book, status: :ok
   end
 
   private
