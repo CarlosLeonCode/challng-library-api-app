@@ -11,8 +11,8 @@ RSpec.describe Loan, type: :model do
     end
 
     describe 'Model relations' do
-      it { should have_belong_to(:user) }
-      it { should have_belong_to(:book) }
+      it { should belong_to(:user) }
+      it { should belong_to(:book) }
     end
   end
 end
