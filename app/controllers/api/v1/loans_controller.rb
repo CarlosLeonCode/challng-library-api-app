@@ -16,9 +16,10 @@ class Api::V1::LoansController < ApplicationController
   # POST /loans
   def create
     @loan = Loan.new(loan_params)
+    ValidateLoanEntitiesRelationated.call(loan: @loan)
 
     if @loan.save
-      render json: @loan, status: :created, location: @loan
+      render json: @loan, status: :created
     else
       render json: @loan.errors, status: :unprocessable_entity
     end
@@ -26,7 +27,9 @@ class Api::V1::LoansController < ApplicationController
 
   # PATCH/PUT /loans/1
   def update
-    if @loan.update(loan_params)
+    if @loan.update!(loan_params)
+      UpdateBookStatus.call(loan: @loan)
+      @loan.previous_changes[:status]
       render json: @loan
     else
       render json: @loan.errors, status: :unprocessable_entity
